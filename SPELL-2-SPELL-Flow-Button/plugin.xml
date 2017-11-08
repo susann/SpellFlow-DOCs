@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="spell_2_spell_flow_button.command.TranslateButton"
+            id="SPELL-2-SPELL-Flow-Button.command.TranslateButtonID"
+            name="Translate Button">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="SPELL-2-SPELL-Flow-Button.toolbar1"
+               label="SPELL-2-SPELL-Flow-Button-Toolbar">
+            <command
+                  commandId="SPELL-2-SPELL-Flow-Button.command.TranslateButtonID"
+                  icon="icons/S2F.png"
+                  label="S2F"
+                  style="push"
+                  tooltip="Translate a SPELL file into SPELL-Flow">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

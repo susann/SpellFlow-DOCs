@@ -1,0 +1,178 @@
+Rule: R_Argument_value2Helper_value_addToFront
+==============================================
+
+Condition for parameter value of node h:Helper in RHS.
+
+{ 
+  var tmp;
+  if(h.getValue() == null) {
+    //tmp = "[" + val + "]";
+    tmp = val;
+  } else {
+    // add before existing string, because 
+	// we merge arguments starting with the last one
+	//tmp = "[" + val + "]," + h.getValue();
+	tmp = val + "," + h.getValue();
+  }
+  tmp
+}
+
+{ var tmp; if(h.getValue() == null) { tmp = val; } else { tmp = val + "," + h.getValue(); } tmp }
+
+
+
+Rule: R_type_Parenthesis2Activity_description
+=============================================
+
+Condition for parameter value of node h:Helper in RHS.
+
+{
+  var tmp;
+  if(h.getValue() != null) {
+    if(val != null) {
+      tmp = "[" + val + "]," + tl + h.getValue() + tr;
+    } else {
+      tmp = tl + h.getValue() + tr;
+	}
+  } else {
+    // Rare case
+    if(val != null) {
+	  tmp = "[" + val + "]," + tl + tr;
+	} else {
+      tmp = tl + tr;
+	}
+  }
+  tmp
+}
+
+{ var tmp; if(h.getValue() != null) { if(val != "") { tmp = "[" + val + "]," + tl + h.getValue() + tr; } else { tmp = tl + h.getValue() + tr; } } else { if(val != "") { tmp = "[" + val + "]," + tl + tr; } else { tmp = tl + tr; } } tmp }
+
+{ System.out.println("VAL: ######" + val + "####"); var tmp; if(h.getValue() != null) { if(val != null) { System.out.println("not null"); tmp = "[" + val + "]," + tl + h.getValue() + tr; } else { tmp = tl + h.getValue() + tr; } } else { if(val != null) { tmp = "[" + val + "]," + tl + tr; } else { tmp = tl + tr; } } tmp }
+
+
+
+Rule: R_Comment_value2Activity_comments
+=======================================
+
+{ 
+  var tmp; 
+  if(a.getComments() == null) { 
+    tmp = val; 
+  } else { 
+    tmp = val + "\n" + a.getComments(); 
+  } 
+  tmp 
+}
+
+{ var tmp; if(a.getComments() == null) { tmp = val; } else { tmp = val + "\n" + a.getComments(); } tmp }
+
+
+
+
+
+
+Rule: R_Set_XMIIDs
+and
+Rule: R_Set_XMIIDs_Root
+=======================================
+
+{ 
+  var time; 
+  // Get current time
+  time = new Date().getTime();
+  // And a random number between 0 and 99999
+  rand = Math.floor((Math.random() * 100000) + 1);
+  var tmp = "_" + time.toString() + rand.toString();
+  tmp
+}
+
+{ var time; time = new Date().getTime(); rand = Math.floor((Math.random() * 100000) + 1); var tmp = "_" + time.toString() + rand.toString(); tmp }
+
+
+
+
+
+Rule: R_Set_XMIIDs_Root
+=======================================
+ATTENTION: How can I say that rule shall be applied to Root nodes but not to Element nodes (they are derived from Root)????
+
+r.eClass().getName().equals("Root")
+if ( (r.eClass().getName() == "Root") &&(r.getXMIIDROOT() == null) )
+(r.eClass().getName().equals("Root")) && (r.getXMIIDROOT() == null)
+
+
+
+
+Rule: R_merge_FIXMEs
+=======================================
+{ 
+  var text; 
+  
+  if(o1.getComments().contains(o2.getComments())) {
+	text = o1.getComments();
+  } else {
+	text = o2.getComments();  
+  }
+  
+  text;
+}
+
+{ var text; if(o1.getComments().contains(o2.getComments())) { text = o1.getComments(); } else { text = o2.getComments(); } text; }
+
+
+
+
+
+
+
+Rule: R_Argument_value_next2Helper_value_addToEnd
+=================================================
+
+Condition for parameter value of node h:Helper in RHS.
+
+{ 
+  var tmp;
+  if(h.getValue() == null) {
+    tmp = val;
+  } else {
+    // add at end of existing string
+	tmp = h.getValue() + "," + val;
+  }
+  tmp
+}
+
+{ var tmp; if(h.getValue() == null) { tmp = val; } else { tmp = h.getValue() + "," + val; } tmp }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++=======================================================================+
+| TGG RULES                                                             |
++=======================================================================+
+
+FIXME_Untranslated
+==================
+
+in RHS/Target instead of: OtherActivity -> comments = text
+
+{
+	returntext = text;
+
+	if(text2.contains(text)) {
+		returntext = text2;
+	}
+	returntext;
+}
+
